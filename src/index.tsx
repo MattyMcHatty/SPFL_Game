@@ -1,19 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Import the "client" version of ReactDOM
+import ReactDOM from 'react-dom';
+import { RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
-import App from './components/App';
+import { router } from './router';
+import { createRoot } from 'react-dom/client';
 
-// Get the root element and assert it to be non-null
-const rootElement = document.getElementById('root');
-
-if (rootElement) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-} else {
-  console.error('Root element not found');
-}
+const root = createRoot(document.getElementById('root') as HTMLElement);
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+);
